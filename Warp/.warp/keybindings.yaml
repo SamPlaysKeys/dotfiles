@@ -1,7 +1,8 @@
 ---
-"terminal:copy_commands": none
 "editor:edit_link": none
-"terminal:warpify_subshell": ctrl-shift-W
+"terminal:clear_blocks": none
+"terminal:ask_ai_assistant": none
 "terminal:copy": none
 "terminal:accept_agent_mode_query_suggestion": cmd-enter
-"terminal:clear_blocks": none
+"terminal:copy_commands": none
+"terminal:warpify_subshell": ctrl-shift-W

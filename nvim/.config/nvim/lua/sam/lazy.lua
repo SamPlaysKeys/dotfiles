@@ -21,4 +21,3 @@ require("lazy").setup({ { import = "sam.plugins" }, { import = "sam.plugins.lsp"
   },
 })
 
-require('csvview').enable()
