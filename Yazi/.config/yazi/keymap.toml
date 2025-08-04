@@ -1,0 +1,6 @@
+[mgr]
+prepend_keymap = [
+  { on = "<C-d>", run = "plugin diff", desc = "Deff the selected with the hovered file"},
+  { on = "<Tab>", run = "spot", desc = "Spot hovered file" }
+]
+
