@@ -1,9 +1,7 @@
-# Keg for Terraform
 tap "hashicorp/tap"
-# Automate deployment, configuration, and upgrading
-brew "ansible"
-# Microsoft Azure CLI 2.0
-brew "azure-cli"
+tap "jwbargsten/misc"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Linux/OSX/FreeBSD resource monitor
 brew "bpytop"
 # GNU File, Shell, and Text utilities
@@ -20,6 +18,8 @@ brew "fzf"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Render markdown on the CLI
+brew "glow"
 # Ping, but with a graph
 brew "gping"
 # Curl statistics made simple
@@ -32,6 +32,8 @@ brew "ipinfo"
 brew "jq"
 # Mac App Store command-line interface
 brew "mas"
+# Show markdown documents on text terminals
+brew "mdcat"
 # Modern and intuitive terminal-based text editor
 brew "micro"
 # Ambitious Vim-fork focused on extensibility and agility
@@ -40,18 +42,22 @@ brew "neovim"
 brew "nmap"
 # Platform built on V8 to build network applications
 brew "node"
+# Create, run, and share large language models (LLMs)
+brew "ollama"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Paste PNG into files
 brew "pngpaste"
 # PDF rendering library (based on the xpdf-3.0 code base)
 brew "poppler"
+# Generic machine emulator and virtualizer
+brew "qemu"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # Modern Day Portscanner
 brew "rustscan"
-# Get, set, and list display resolution
-brew "screenresolution"
+# Display and control your Android device
+brew "scrcpy"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
 # Command-line interface for https://speedtest.net bandwidth tests
@@ -74,6 +80,10 @@ brew "yazi"
 brew "zoxide"
 # Terraform
 brew "hashicorp/tap/terraform"
+# Set the default browser from command-line
+brew "jwbargsten/misc/defbro"
+# Android SDK component
+cask "android-platform-tools"
 # Temporary notes with calculations and extensible features
 cask "antinote"
 # Tool to flash OS images to SD cards & USB drives
@@ -84,22 +94,17 @@ cask "boop"
 cask "crystalfetch"
 # Disk space visualiser
 cask "daisydisk"
-# Utilities designed to make common development tasks easier
-cask "devtoys"
 # Voice and text chat software
 cask "discord"
 # Software custom-built for content creation
 cask "elgato-wave-link"
-# Nerd font symbols
 cask "font-symbols-only-nerd-font"
 # Free and open-source image editor
 cask "gimp"
 # Desktop client for GitHub repositories
 cask "github"
-# Web browser
-cask "google-chrome"
-# Discover, download, and run local LLMs
-cask "lm-studio"
+# Provides updates to various Microsoft products
+cask "microsoft-auto-update"
 # Multi-platform web browser
 cask "microsoft-edge@beta"
 # Office suite
@@ -112,16 +117,12 @@ cask "nvidia-geforce-now"
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
+# Get up and running with large language models locally
+cask "ollama-app"
 # Command palette in any application
 cask "paletro"
-# Browse, manage, inspect containers and images
-cask "podman-desktop"
 # Command-line shell and scripting language
 cask "powershell"
-# Companion app for Flipper Zero devices
-cask "qflipper"
-# Imaging utility to install operating systems to a microSD card
-cask "raspberry-pi-imager"
 # Control your tools with a few keystrokes
 cask "raycast"
 # Window snapping tool
@@ -132,44 +133,30 @@ cask "slack"
 cask "spotify"
 # System monitor for the menu bar
 cask "stats"
-# Video game digital distribution service
-cask "steam"
 # Mesh VPN based on WireGuard
 cask "tailscale-app"
 # Remote access and connectivity software focused on security
 cask "teamviewer"
-# Unpacks archive files
-cask "the-unarchiver"
-# Web browser focusing on security
-cask "tor-browser"
+# Tool to invert scroll direction for physical scroll wheels
+cask "unnaturalscrollwheels"
 # Virtual machines UI using QEMU
 cask "utm"
-# Open-source code editor
-cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # Rust-based terminal
 cask "warp"
-# Rust-based terminal
+# Rust-based terminal-based
 cask "warp@preview"
+# Gecko-based Web browser
+cask "zen"
 # Connect to Windows
 cask "windows-app"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "1001 Record", id: 6451834996
 mas "Developer", id: 640199958
-mas "GarageBand", id: 682658836
+mas "RunCat", id: 1429033973
 mas "Swift Playground", id: 1496833156
 mas "TestFlight", id: 899247664
+mas "Virtual Snow", id: 6747272596
 mas "Xcode", id: 497799835
-vscode "ecmel.vscode-html-css"
-vscode "george-alisson.html-preview-vscode"
-vscode "github.copilot"
-vscode "github.copilot-chat"
-vscode "ms-python.debugpy"
-vscode "ms-python.python"
-vscode "ms-python.vscode-pylance"
-vscode "ms-python.vscode-python-envs"
-vscode "ms-vscode.powershell"
-vscode "xdebug.php-debug"
-vscode "xdebug.php-pack"
-vscode "zobo.php-intellisense"
