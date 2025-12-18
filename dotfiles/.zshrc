@@ -54,3 +54,27 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
+
+# SSH Agent Configuration for GitHub
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    eval "$(ssh-agent -s)" > /dev/null
+fi
+
+# Ensure GitHub SSH key is loaded
+if ! ssh-add -l 2>/dev/null | grep -q "github-sfleming-mac"; then
+    ssh-add ~/.ssh/id_rsa_github > /dev/null 2>&1
+fi
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/sfadmin/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Ensure Homebrew's Python is used
+export PATH="/opt/homebrew/bin/python3:$PATH"
+
+# Created by `pipx` on 2025-11-06 17:59:27
+export PATH="$PATH:/Users/sfadmin/.local/bin"
+
+# Created manually for OpenShift Local on 2025-12-2 13:40:35
+export PATH="/Users/sfadmin/.crc/bin/oc:$PATH"
+
