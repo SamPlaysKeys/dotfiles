@@ -16,34 +16,10 @@ These dotfiles represent an ongoing journey of optimization and refinement, cont
 
 ### Setup Tools
 - **Brewfile**: Comprehensive list of development tools and applications
-- **copy-dotfiles.sh**: Automated dotfile deployment script
 
-## Installation
-
-### Using the Copy Script (Recommended)
-
-This repository uses a copy-based approach rather than symbolic linking for dotfile management:
-
-```bash
-# Clone the repository
-git clone https://github.com/your-username/SetupFiles.git
-cd SetupFiles
-
-# Make the copy script executable
-chmod +x copy-dotfiles.sh
-
-# Run the copy script
-./copy-dotfiles.sh
-```
-
-The script will:
-- Automatically detect the structure of each dotfile directory
-- Back up existing configurations (with `.bak` extension)
-- Copy new configurations to their appropriate locations
-- Provide colored output to track the installation progress
+## Additional Installation Steps
 
 ### Installing Applications
-
 ```bash
 # Install Homebrew (if not already installed)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -51,30 +27,11 @@ The script will:
 # Install all applications and tools from Brewfile
 brew bundle install
 ```
-
-## Why Copy Instead of Symlink?
-
-This setup uses file copying rather than the traditional symbolic linking approach (like GNU Stow) for several advantages:
-
-### **Independence from Source Location**
-- Configurations work regardless of where the repository is located
-- No broken links if the repository is moved or deleted
-- Easier to maintain across multiple machines
-
-### **Local Customization**
-- Make machine-specific modifications without affecting the source repository
-- Experiment with settings without impacting the master configuration
-- Easier rollback to known-good configurations
-
-### **Application Compatibility**
-- Some applications don't properly follow symbolic links
-- Better compatibility with security-conscious applications
-- No issues with file permissions or ownership
-
-### **Simplified Management**
-- No dependency on external tools like GNU Stow
-- Clear separation between template and active configurations
-- Easier troubleshooting when things go wrong
+### Installing Fonts
+```bash
+# Use my hack-fonts Github repo to quickly install the Hack typeface for NeoVim and Yazi support
+cd /Library/Fonts && git clone https://github.com/SamPlaysKeys/hack-fonts.git
+```
 
 ## Key Principles
 
@@ -93,13 +50,6 @@ A more robust automation tool is currently in development to enhance the dotfile
 - Cross-platform compatibility improvements
 
 The current copy-based approach serves as a solid foundation while this enhanced tooling is being developed.
-
-## Usage Notes
-
-- **First-time setup**: Run the copy script after cloning
-- **Updates**: Re-run the copy script to apply new configurations
-- **Customization**: Modify copied files directly in your home directory
-- **Backup**: The script automatically creates backups of existing configurations
 
 ## Contributing
 
