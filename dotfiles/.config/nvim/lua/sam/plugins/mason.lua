@@ -13,7 +13,7 @@ return {
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "pyright", "ts_ls", "yamlls", "jsonls", "ansiblels", "powershell_es" }, -- Add more LSP servers you need
+                ensure_installed = { "lua_ls", "pyright", "taplo", "ts_ls", "yamlls", "jsonls", "ansiblels", "powershell_es" }, -- Add more LSP servers you need
             })
 
             vim.lsp.config('lua_ls', {
@@ -96,6 +96,17 @@ return {
             -- Ansible
             vim.lsp.config('ansiblels', {
                 capabilities = capabilities,
+            })
+            -- Taplo (TOML)
+            vim.lsp.config('taplo', {
+                capabilities = capabilities,
+                settings = {
+                    taplo = {
+                        config = {
+                            root_dir = { ".git", "*.toml" }
+                        }
+                    }
+                },
             })
         end,
     }
