@@ -1,39 +1,39 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "2ad42fa"
-hash = "e01006bfb38951ea89031bd918b20dbb"
+rev = "03cdd4b"
+hash = "36a484acf6a0a0219c543ccb4cee218f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "2ad42fa"
+rev = "03cdd4b"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:diff"
-rev = "2ad42fa"
-hash = "47865a70cade14a0b9b6bc6a54f16bdb"
+rev = "03cdd4b"
+hash = "492e4757f332e29f982556bf507e043c"
 
 [[plugin.deps]]
-use = "boydaihungst/file-extra-metadata"
-rev = "ec035d6"
-hash = "b23b7db6beb2854a689c648a38843f8c"
+use = "samplayskeys/file-extra-metadata"
+rev = "8fd4f2b"
+hash = "6d7617f12754d2a10b6ef6aba31d8b67"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:dracula"
-rev = "d04a298"
-hash = "7b9ff01a0070cc9176e0c683329aeb26"
+rev = "4a1802a"
+hash = "7a870f143a4026a893ea3123be711e7a"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "d04a298"
-hash = "288a0dedd5d13b28605cf82c05326dcd"
+rev = "4a1802a"
+hash = "b951d27afe197d154f6da9683b46c5f8"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
-rev = "d04a298"
-hash = "e6c5beeb1da3199355734273ee452a7f"
+rev = "4a1802a"
+hash = "b069dba45e199684b16fa12d385642ed"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
-rev = "31167ed"
-hash = "a04e157148549bacbb2831aab0e6e8cb"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
