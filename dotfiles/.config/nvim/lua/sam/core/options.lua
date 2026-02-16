@@ -21,7 +21,14 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 opt.cursorline = true -- highlight the current cursor line
 
 -- appearance
-opt.conceallevel = 1
+opt.conceallevel = 0
+
+-- Filetype aliases
+vim.filetype.add {
+  extension = {
+    hujson = "json5",
+  }
+}
 
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
