@@ -23,13 +23,6 @@ opt.cursorline = true -- highlight the current cursor line
 -- appearance
 opt.conceallevel = 0
 
--- Filetype aliases
-vim.filetype.add {
-  extension = {
-    hujson = "json5",
-  }
-}
-
 -- turn on termguicolors for nightfly colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
@@ -48,3 +41,6 @@ opt.splitbelow = true -- split horizontal window to the bottom
 
 -- turn off swapfile
 opt.swapfile = false
+
+-- set automatic creation of a newline at end of file.
+opt.fixendofline = true
