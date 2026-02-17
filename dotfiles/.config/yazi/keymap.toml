@@ -2,8 +2,5 @@
 prepend_keymap = [
   { on = "<C-d>", run = "plugin diff", desc = "Deff the selected with the hovered file"},
   { on = "<Tab>", run = "spot", desc = "Spot hovered file" },
-  { on   = [ "g", "i" ], run  = "plugin lazygit", desc = "run lazygit"},
-#  { on   = "!", for  = "unix", run  = 'shell "$SHELL" --block', desc = "Open $SHELL here"},
-  { on = "<C-p>", run = "shell -- qlmanage -p %s"},
+  { on = [ "g", "i" ], run  = "plugin lazygit", desc = "run lazygit"}
 ]
-
