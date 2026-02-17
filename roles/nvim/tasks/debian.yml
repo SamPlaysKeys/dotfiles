@@ -1,0 +1,3 @@
+- name: Not implemented yet
+  ansible.builtin.debug:
+    msg: "Nvim installation on Debian is not yet implemented"

@@ -1,13 +1,5 @@
-- name: Update Homebrew before beginning
-  community.general.homebrew:
-    update_homebrew: yes
-
 - name: Install Yazi on MacOS
-  community.general.homebrew:
-    name: "{{ item }}"
-    state: present
-  loop: "{{ homebrew_packages }}"
-  become: yes
+  import_tasks: macos.yml
   when: ansible_distribution == "MacOSX"
 
 - name: Install Yazi on Debian/Ubuntu

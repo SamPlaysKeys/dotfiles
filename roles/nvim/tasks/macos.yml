@@ -1,5 +1,4 @@
 - name: Install nvim using Homebrew
-  become: yes
   community.general.homebrew:
     name:
       - nvim

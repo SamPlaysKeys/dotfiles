@@ -7,5 +7,3 @@
     name: "{{ item }}"
     state: present
   loop: "{{ homebrew_packages }}"
-  become: yes
-  when: ansible_distribution == "MacOSX"

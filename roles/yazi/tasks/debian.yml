@@ -1,0 +1,42 @@
+- name: Install build dependencies
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ build_deps }}"
+  become: yes
+
+- name: Ensure source directory exists
+  ansible.builtin.file:
+    path: "{{ yazi_src_dir }}"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: '0755'
+
+- name: Clone Yazi repository
+  ansible.builtin.git:
+    repo: "{{ yazi_repo }}"
+    dest: "{{ yazi_src_dir }}"
+    version: main
+
+- name: Build Yazi with Cargo
+  ansible.builtin.command:
+    cmd: cargo build --release --locked
+    chdir: "{{ yazi_src_dir }}"
+    creates: "{{ yazi_src_dir }}/target/release/yazi"
+
+- name: Install Yazi binary to /usr/local/bin
+  ansible.builtin.copy:
+    src: "{{ yazi_src_dir }}/target/release/yazi"
+    dest: /usr/local/bin/yazi
+    mode: '0755'
+    remote_src: yes
+  become: yes
+
+- name: Install Yazi supporting packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ debian_packages }}"
+  become: yes
+
