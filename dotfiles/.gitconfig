@@ -1,6 +1,6 @@
 [user]
 	name = Sam Fleming
-	email = info@samplayskeys.com
+	email = sam@samplayskeys.com
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f

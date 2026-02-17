@@ -1,0 +1,15 @@
+- name: Build nvim from source in Ubuntu
+  import_tasks: ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+
+- name: Build nvim from source in Fedora
+  import_tasks: fedora.yml
+  when: ansible_distribution == "Fedora"
+
+- name: Build nvim from source in MacOS
+  import_tasks: macos.yml
+  when: ansible_distribution == "MacOSX"
+
+- name: Build nvim from source in Debian
+  import_tasks: debian.yml
+  when: ansible_distribution == "Debian"

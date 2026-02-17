@@ -1,0 +1,39 @@
+---
+homebrew_packages:
+  - yazi
+  - ffmpeg
+  - sevenzip
+  - jq
+  - poppler
+  - fd
+  - ripgrep
+  - fzf
+  - zoxide
+  - resvg
+  - imagemagick
+  - lazygit
+  - font-symbols-only-nerd-font
+
+### Fedora Variables
+yazi_copr_repo: "lihaohong/yazi"
+yazi_dnf_package: "yazi"
+
+### Debian Variables 
+debian_packages:
+  - ffmpeg 
+  - 7zip 
+  - jq 
+  - poppler-utils 
+  - fd-find 
+  - ripgrep 
+  - fzf 
+  - zoxide 
+  - imagemagick
+  - lazygit
+yazi_repo: "https://github.com/sxyazi/yazi.git"
+yazi_src_dir: "{{ ansible_env.HOME }}/src/yazi"
+# Dependencies needed for building on Debian
+build_deps:
+  - git
+  - build-essential
+  - cargo

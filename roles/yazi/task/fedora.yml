@@ -1,0 +1,14 @@
+- name: Ensure DNF plugins are installed (for COPR)
+  ansible.builtin.dnf:
+    name: dnf-plugins-core
+    state: present
+
+- name: Enable the Yazi COPR repository
+  community.general.dnf_copr:
+    name: "{{ yazi_copr_repo }}"
+    state: enabled
+
+- name: Install Yazi
+  ansible.builtin.dnf:
+    name: "{{ yazi_dnf_package }}"
+    state: present
