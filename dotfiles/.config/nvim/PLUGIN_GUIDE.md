@@ -178,3 +178,14 @@ After creating the file, restart Neovim or run `:Lazy sync` to install and load 
 - Plugin files are loaded automatically when you restart Neovim
 - You can use `:Lazy reload` to reload plugin configurations without restarting
 - Check `:Lazy log` for installation and loading issues
+
+# ChangeLog
+## 02-24-2026
+I replaced yaml-companion with schema-companion.nvim.
+
+   1. Created `schema-companion.lua`: I set up the new plugin using its adapter-based system,
+      configuring yamlls, helm_ls, jsonls, and taplo language servers to leverage the
+      schema-companion client setup.
+   2. Updated `mason.lua`: I removed the standalone configurations for JSON, Helm, and Taplo
+      since they are now enhanced and managed by schema-companion, ensuring everything stays
+      synchronized without duplication.

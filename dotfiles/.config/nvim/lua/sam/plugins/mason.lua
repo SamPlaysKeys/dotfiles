@@ -62,17 +62,6 @@ return {
             })
             vim.lsp.enable('pyright')
 
-            -- JSON
-            vim.filetype.add({ extension = { hujson = "json5" } })
-            vim.lsp.config('jsonls', {
-                capabilities = capabilities,
-                filetypes = { "json", "jsonc", "json5" },
-                settings = {
-                    json = { schemas = {} },
-                },
-            })
-            vim.lsp.enable('jsonls')
-
             -- Ansible
             vim.lsp.config('ansiblels', {
                 capabilities = capabilities,
@@ -90,28 +79,6 @@ return {
             })
             vim.lsp.enable('ansiblels')
 
-            -- Helm
-            vim.lsp.config('helm_ls', {
-                capabilities = capabilities,
-                settings = {
-                    ['helm-ls'] = {
-                        yamlls = { path = "yaml-language-server" }
-                    }
-                }
-            })
-            vim.lsp.enable('helm_ls')
-
-            -- Taplo (TOML)
-            vim.lsp.config('taplo', {
-                capabilities = capabilities,
-                settings = {
-                    taplo = {
-                        config = { root_dir = { ".git", "*.toml" } }
-                    }
-                },
-            })
-            vim.lsp.enable('taplo')
-
             -- TypeScript (ts_ls)
             vim.lsp.config('ts_ls', { capabilities = capabilities })
             vim.lsp.enable('ts_ls')
@@ -128,7 +95,7 @@ return {
             })
             vim.lsp.enable('jinja_lsp')
 
-            -- Yaml: Configured in plugins/yaml-companion.lua
+            -- Yaml, JSON, Helm, and Taplo: Configured in plugins/schema-companion.lua
         end,
     }
 }

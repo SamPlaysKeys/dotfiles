@@ -4,7 +4,7 @@ return {
     windows = {
       preview = true,
       width_focus = 30,
-      width_preview = 80,
+      width_preview = 40,
     },
     options = {
       use_as_default_explorer = false,
@@ -14,7 +14,9 @@ return {
     {
       "<leader>ef",
       function()
-        require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+        local buf_name = vim.api.nvim_buf_get_name(0)
+        local path = (vim.bo.buftype == "" and buf_name ~= "") and buf_name or vim.uv.cwd()
+        require("mini.files").open(path, true)
       end,
       desc = "Open mini.files (dir of current file)",
     },

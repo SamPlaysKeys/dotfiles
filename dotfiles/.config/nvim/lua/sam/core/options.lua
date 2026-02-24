@@ -39,6 +39,9 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
+-- whitespace visualization
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
 -- turn off swapfile
 opt.swapfile = false
 
