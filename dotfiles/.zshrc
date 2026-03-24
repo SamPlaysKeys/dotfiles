@@ -1,8 +1,5 @@
 # ~/.zshrc - Zsh configuration file
 
-# Initialize Homebrew 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # History settings
 HISTSIZE=10000
 SAVEHIST=10000
@@ -46,6 +43,7 @@ if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
 
+# Yazi launcher with cd
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -55,8 +53,22 @@ function y() {
 	rm -f -- "$tmp"
 }
 
+# Uncomment to use Oh-my-zsh
+# export ZSH="$HOME/.oh-my-zsh"
+# ZSH_THEME="bira"
+# plugins=(git)
+#
+# source $ZSH/oh-my-zsh.sh
+
+# LazyGit Aliases
+alias LazyGit='lazygit'
+alias gi='lazygit'
+alias lg='lazygit'
+
+# Initialize Homebrew 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # SSH Agent Configuration for GitHub
 if [ -z "$SSH_AUTH_SOCK" ]; then
     eval "$(ssh-agent -s)" > /dev/null
 fi
-
