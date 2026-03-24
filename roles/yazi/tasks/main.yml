@@ -1,4 +1,11 @@
 ---
+- name: Ensure /tmp/yazi directory exists
+  file:
+    path: /tmp/yazi
+    state: directory
+  when: ansible_os_family != 'Darwin'
+  tags: [yazi, install]
+
 - name: Clone Yazi repository
   git:
     repo: https://github.com/sxyazi/yazi.git

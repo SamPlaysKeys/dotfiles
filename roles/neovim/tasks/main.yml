@@ -6,6 +6,13 @@
   when: ansible_os_family == 'Darwin'
   tags: [neovim, install]
 
+- name: Ensure /tmp/neovim directory exists
+  file:
+    path: /tmp/neovim
+    state: directory
+  when: ansible_os_family != 'Darwin'
+  tags: [neovim, install]
+
 - name: Clone Neovim repository
   git:
     repo: https://github.com/neovim/neovim.git
