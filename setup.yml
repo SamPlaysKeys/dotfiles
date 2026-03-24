@@ -7,6 +7,7 @@
   vars:
     dotfiles_dir: "{{ playbook_dir }}/dotfiles"
     config_dir: "{{ ansible_env.HOME }}/.config"
+    install_full_applist: false
     dependencies:
       Darwin:
         - cmake
@@ -34,12 +35,29 @@
         - rust
 
   tasks:
+    - name: Check if Homebrew is installed (macOS)
+      command: command -v brew
+      register: brew_check
+      ignore_errors: yes
+      when: ansible_os_family == 'Darwin'
+      tags: [dependencies, install]
+
+    - name: Install Homebrew (macOS)
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      when: ansible_os_family == 'Darwin' and brew_check.rc != 0
+      tags: [dependencies, install]
+
     - name: Install macOS dependencies for Neovim and Yazi
       homebrew:
         name: "{{ dependencies['Darwin'] }}"
         state: present
       when: ansible_os_family == 'Darwin'
       tags: [dependencies, install]
+
+    - name: Install full application list from Brewfile (macOS)
+      command: brew bundle --file={{ playbook_dir }}/Brewfile
+      when: ansible_os_family == 'Darwin' and (install_full_applist | default(false) | bool)
+      tags: [apps, install, dependencies]
 
     - name: Install Debian dependencies for Neovim and Yazi
       apt:
@@ -92,6 +110,7 @@
         repo: https://github.com/sxyazi/yazi.git
         dest: /tmp/yazi
         depth: 1
+      when: ansible_os_family != 'Darwin'
       tags: [yazi, install]
 
     - name: Build Yazi
@@ -100,6 +119,7 @@
         chdir: /tmp/yazi
       environment:
         PATH: "{{ ansible_env.HOME }}/.cargo/bin:/opt/homebrew/bin:{{ ansible_env.PATH }}"
+      when: ansible_os_family != 'Darwin'
       tags: [yazi, install]
 
     - name: Install Yazi
@@ -112,6 +132,21 @@
       with_items:
         - yazi
         - ya
+      when: ansible_os_family != 'Darwin'
+      tags: [yazi, install]
+
+    - name: Install Yazi and dependencies (macOS)
+      shell: brew install yazi ffmpeg-full sevenzip jq poppler fd ripgrep fzf zoxide resvg imagemagick-full font-symbols-only-nerd-font
+      environment:
+        PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+      when: ansible_os_family == 'Darwin'
+      tags: [yazi, install]
+
+    - name: Link Yazi dependencies (macOS)
+      shell: brew link ffmpeg-full imagemagick-full -f --overwrite
+      environment:
+        PATH: "/opt/homebrew/bin:/usr/local/bin:{{ ansible_env.PATH }}"
+      when: ansible_os_family == 'Darwin'
       tags: [yazi, install]
 
     - name: Find all top-level contents in dotfiles/.config/nvim
