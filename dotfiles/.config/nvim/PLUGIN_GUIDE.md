@@ -189,3 +189,10 @@ I replaced yaml-companion with schema-companion.nvim.
    2. Updated `mason.lua`: I removed the standalone configurations for JSON, Helm, and Taplo
       since they are now enhanced and managed by schema-companion, ensuring everything stays
       synchronized without duplication.
+
+   1. Conflict in Autocompletion (`nvim-cmp`):
+      - Issue: Both lsp.lua and nvim-cmp.lua call cmp.setup({}) with different mappings,
+        snippets, and formatting rules. This leads to unpredictable autocompletion behavior
+        where the latter loaded file will silently overwrite the other's settings.
+      - Optimization: You should consolidate all nvim-cmp configurations into nvim-cmp.lua and
+        remove the cmp.setup block from lsp.lua.
