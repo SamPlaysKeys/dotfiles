@@ -1,0 +1,161 @@
+---
+- name: Install Neovim and Yazi from source and setup configs
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    dependencies:
+      Darwin:
+        - cmake
+        - ninja
+        - gettext
+        - rust
+      Debian:
+        - ninja-build
+        - gettext
+        - cmake
+        - unzip
+        - curl
+        - build-essential
+        - cargo
+        - rustc
+      RedHat:
+        - ninja-build
+        - cmake
+        - gcc
+        - make
+        - unzip
+        - gettext
+        - curl
+        - cargo
+        - rust
+
+  tasks:
+    - name: Install macOS dependencies for Neovim and Yazi
+      homebrew:
+        name: "{{ dependencies['Darwin'] }}"
+        state: present
+      when: ansible_os_family == 'Darwin'
+      tags: [dependencies, install]
+
+    - name: Install Debian dependencies for Neovim and Yazi
+      apt:
+        name: "{{ dependencies['Debian'] }}"
+        state: present
+        update_cache: yes
+      become: yes
+      when: ansible_os_family == 'Debian'
+      tags: [dependencies, install]
+
+    - name: Install Fedora/RedHat dependencies for Neovim and Yazi
+      dnf:
+        name: "{{ dependencies['RedHat'] }}"
+        state: present
+      become: yes
+      when: ansible_os_family == 'RedHat'
+      tags: [dependencies, install]
+
+    - name: Ensure .config directory exists
+      file:
+        path: "{{ config_dir }}"
+        state: directory
+      tags: [config]
+
+    - name: Clone Neovim repository
+      git:
+        repo: https://github.com/neovim/neovim.git
+        dest: /tmp/neovim
+        version: stable
+        depth: 1
+      tags: [neovim, install]
+
+    - name: Build Neovim
+      shell: make CMAKE_BUILD_TYPE=RelWithDebInfo
+      args:
+        chdir: /tmp/neovim
+      environment:
+        PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
+      tags: [neovim, install]
+
+    - name: Install Neovim
+      shell: make install
+      args:
+        chdir: /tmp/neovim
+      become: yes
+      tags: [neovim, install]
+
+    - name: Clone Yazi repository
+      git:
+        repo: https://github.com/sxyazi/yazi.git
+        dest: /tmp/yazi
+        depth: 1
+      tags: [yazi, install]
+
+    - name: Build Yazi
+      shell: cargo build --release --locked
+      args:
+        chdir: /tmp/yazi
+      environment:
+        PATH: "{{ ansible_env.HOME }}/.cargo/bin:/opt/homebrew/bin:{{ ansible_env.PATH }}"
+      tags: [yazi, install]
+
+    - name: Install Yazi
+      copy:
+        src: "/tmp/yazi/target/release/{{ item }}"
+        dest: "/usr/local/bin/{{ item }}"
+        mode: '0755'
+        remote_src: yes
+      become: yes
+      with_items:
+        - yazi
+        - ya
+      tags: [yazi, install]
+
+    - name: Find all top-level contents in dotfiles/.config/nvim
+      find:
+        paths: "{{ dotfiles_dir }}/.config/nvim"
+        hidden: yes
+        file_type: any
+      register: nvim_contents
+      tags: [config, nvim]
+
+    - name: Ensure ~/.config/nvim exists
+      file:
+        path: "{{ config_dir }}/nvim"
+        state: directory
+      tags: [config, nvim]
+
+    - name: Symlink nvim contents
+      file:
+        src: "{{ item.path }}"
+        dest: "{{ config_dir }}/nvim/{{ item.path | basename }}"
+        state: link
+        force: yes
+      with_items: "{{ nvim_contents.files }}"
+      tags: [config, nvim]
+
+    - name: Find all top-level contents in dotfiles/.config/yazi
+      find:
+        paths: "{{ dotfiles_dir }}/.config/yazi"
+        hidden: yes
+        file_type: any
+      register: yazi_contents
+      tags: [config, yazi]
+
+    - name: Ensure ~/.config/yazi exists
+      file:
+        path: "{{ config_dir }}/yazi"
+        state: directory
+      tags: [config, yazi]
+
+    - name: Symlink yazi contents
+      file:
+        src: "{{ item.path }}"
+        dest: "{{ config_dir }}/yazi/{{ item.path | basename }}"
+        state: link
+        force: yes
+      with_items: "{{ yazi_contents.files }}"
+      tags: [config, yazi]

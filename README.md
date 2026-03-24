@@ -17,6 +17,50 @@ These dotfiles represent an ongoing journey of optimization and refinement, cont
 ### Setup Tools
 - **Brewfile**: Comprehensive list of development tools and applications
 
+## Automated Setup with Ansible
+
+A `setup.yml` Ansible playbook is included to automate the installation of Neovim and Yazi from source and to set up configuration symlinks.
+
+### Prerequisites
+- **Ansible**: `brew install ansible`
+- **Sudo Access**: Required for installing binaries to `/usr/local/bin` and running `make install`.
+
+### Running the Playbook
+
+To run the full setup:
+```bash
+ansible-playbook setup.yml -K
+```
+
+### Using Tags for Selective Execution
+
+You can use tags to run specific parts of the setup:
+
+- **Install everything (dependencies + Neovim + Yazi)**:
+  ```bash
+  ansible-playbook setup.yml -K --tags install
+  ```
+
+- **Only setup configuration symlinks**:
+  ```bash
+  ansible-playbook setup.yml --tags config
+  ```
+
+- **Only setup Neovim (install + config)**:
+  ```bash
+  ansible-playbook setup.yml -K --tags neovim,nvim
+  ```
+
+- **Only setup Yazi (install + config)**:
+  ```bash
+  ansible-playbook setup.yml -K --tags yazi
+  ```
+
+- **Only install dependencies**:
+  ```bash
+  ansible-playbook setup.yml -K --tags dependencies
+  ```
+
 ## Additional Installation Steps
 
 ### Installing Applications
