@@ -27,6 +27,18 @@
   when: ansible_os_family == 'Debian'
   tags: [dependencies, install]
 
+- name: Check if Rust is installed (Debian)
+  stat:
+    path: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
+  register: cargo_stat
+  when: ansible_os_family == 'Debian'
+  tags: [dependencies, install]
+
+- name: Install Rust via rustup (Debian)
+  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  when: ansible_os_family == 'Debian' and not cargo_stat.stat.exists
+  tags: [dependencies, install]
+
 - name: Install Fedora/RedHat dependencies for Neovim and Yazi
   dnf:
     name: "{{ dependencies['RedHat'] }}"
