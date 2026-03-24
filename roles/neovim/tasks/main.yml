@@ -16,18 +16,14 @@
   tags: [neovim, install]
 
 - name: Build Neovim
-  shell: make CMAKE_BUILD_TYPE=RelWithDebInfo
-  args:
-    chdir: /tmp/neovim
+  shell: cd /tmp/neovim && make CMAKE_BUILD_TYPE=RelWithDebInfo
   environment:
     PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
   when: ansible_os_family != 'Darwin'
   tags: [neovim, install]
 
 - name: Install Neovim
-  shell: make install
-  args:
-    chdir: /tmp/neovim
+  shell: cd /tmp/neovim && make install
   become: yes
   when: ansible_os_family != 'Darwin'
   tags: [neovim, install]

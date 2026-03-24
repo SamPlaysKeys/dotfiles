@@ -8,9 +8,7 @@
   tags: [yazi, install]
 
 - name: Build Yazi
-  shell: cargo build --release --locked
-  args:
-    chdir: /tmp/yazi
+  shell: cd /tmp/yazi && cargo build --release --locked
   environment:
     PATH: "{{ ansible_env.HOME }}/.cargo/bin:/opt/homebrew/bin:{{ ansible_env.PATH }}"
   when: ansible_os_family != 'Darwin'
