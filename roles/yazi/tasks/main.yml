@@ -1,29 +1,58 @@
 ---
-- name: Ensure /tmp/yazi directory exists
-  file:
-    path: /tmp/yazi
-    state: directory
+# - name: Ensure /tmp/yazi directory exists
+#   file:
+#     path: /tmp/yazi
+#     state: directory
+#   when: ansible_os_family != 'Darwin'
+#   tags: [yazi, install]
+#
+# - name: Clone Yazi repository
+#   git:
+#     repo: https://github.com/sxyazi/yazi.git
+#     dest: /tmp/yazi
+#     depth: 1
+#   when: ansible_os_family != 'Darwin'
+#   tags: [yazi, install]
+#
+# - name: Build Yazi
+#   shell: cd /tmp/yazi && cargo build --release --locked
+#   environment:
+#     PATH: "{{ ansible_env.HOME }}/.cargo/bin:/opt/homebrew/bin:{{ ansible_env.PATH }}"
+#   when: ansible_os_family != 'Darwin'
+#   tags: [yazi, install]
+#
+# - name: Install Yazi
+#   copy:
+#     src: "/tmp/yazi/target/release/{{ item }}"
+#     dest: "/usr/local/bin/{{ item }}"
+#     mode: '0755'
+#     remote_src: yes
+#   become: yes
+#   with_items:
+#     - yazi
+#     - ya
+#   when: ansible_os_family != 'Darwin'
+#   tags: [yazi, install]
+
+- name: Get Yazi latest release version
+  uri:
+    url: https://api.github.com/repos/sxyazi/yazi/releases/latest
+    return_content: yes
+  register: yazi_latest_release
   when: ansible_os_family != 'Darwin'
   tags: [yazi, install]
 
-- name: Clone Yazi repository
-  git:
-    repo: https://github.com/sxyazi/yazi.git
-    dest: /tmp/yazi
-    depth: 1
-  when: ansible_os_family != 'Darwin'
-  tags: [yazi, install]
-
-- name: Build Yazi
-  shell: cd /tmp/yazi && cargo build --release --locked
-  environment:
-    PATH: "{{ ansible_env.HOME }}/.cargo/bin:/opt/homebrew/bin:{{ ansible_env.PATH }}"
+- name: Download and extract Yazi release
+  unarchive:
+    src: "https://github.com/sxyazi/yazi/releases/download/{{ yazi_latest_release.json.tag_name }}/yazi-{{ ansible_architecture }}-unknown-linux-gnu.zip"
+    dest: /tmp/
+    remote_src: yes
   when: ansible_os_family != 'Darwin'
   tags: [yazi, install]
 
 - name: Install Yazi
   copy:
-    src: "/tmp/yazi/target/release/{{ item }}"
+    src: "/tmp/yazi-{{ ansible_architecture }}-unknown-linux-gnu/{{ item }}"
     dest: "/usr/local/bin/{{ item }}"
     mode: '0755'
     remote_src: yes
