@@ -1,0 +1,33 @@
+---
+- name: Install Neovim via Homebrew (macOS)
+  homebrew:
+    name: neovim
+    state: present
+  when: ansible_os_family == 'Darwin'
+  tags: [neovim, install]
+
+- name: Clone Neovim repository
+  git:
+    repo: https://github.com/neovim/neovim.git
+    dest: /tmp/neovim
+    version: stable
+    depth: 1
+  when: ansible_os_family != 'Darwin'
+  tags: [neovim, install]
+
+- name: Build Neovim
+  shell: make CMAKE_BUILD_TYPE=RelWithDebInfo
+  args:
+    chdir: /tmp/neovim
+  environment:
+    PATH: "/opt/homebrew/bin:{{ ansible_env.PATH }}"
+  when: ansible_os_family != 'Darwin'
+  tags: [neovim, install]
+
+- name: Install Neovim
+  shell: make install
+  args:
+    chdir: /tmp/neovim
+  become: yes
+  when: ansible_os_family != 'Darwin'
+  tags: [neovim, install]

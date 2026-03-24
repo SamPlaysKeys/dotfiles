@@ -1,0 +1,36 @@
+---
+- name: Check if Homebrew is installed (macOS)
+  command: command -v brew
+  register: brew_check
+  ignore_errors: yes
+  when: ansible_os_family == 'Darwin'
+  tags: [dependencies, install]
+
+- name: Install Homebrew (macOS)
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: ansible_os_family == 'Darwin' and brew_check.rc != 0
+  tags: [dependencies, install]
+
+- name: Install macOS dependencies for Neovim and Yazi
+  homebrew:
+    name: "{{ dependencies['Darwin'] }}"
+    state: present
+  when: ansible_os_family == 'Darwin'
+  tags: [dependencies, install]
+
+- name: Install Debian dependencies for Neovim and Yazi
+  apt:
+    name: "{{ dependencies['Debian'] }}"
+    state: present
+    update_cache: yes
+  become: yes
+  when: ansible_os_family == 'Debian'
+  tags: [dependencies, install]
+
+- name: Install Fedora/RedHat dependencies for Neovim and Yazi
+  dnf:
+    name: "{{ dependencies['RedHat'] }}"
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'
+  tags: [dependencies, install]
