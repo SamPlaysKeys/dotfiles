@@ -16,3 +16,8 @@
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: '0644'
   tags: [config, zsh]
+
+- name: set new zshrc file as source
+  shell: "source {{ ansible_env.HOME }}/.zshrc"
+  when: zshrc_stat.stat.exists
+  tags: [config, zsh]
