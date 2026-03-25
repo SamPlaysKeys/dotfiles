@@ -47,3 +47,4 @@
     - role: neovim
     - role: yazi
     - role: symlinks
+    - role: zsh

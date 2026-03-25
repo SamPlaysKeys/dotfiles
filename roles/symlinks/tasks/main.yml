@@ -5,48 +5,40 @@
     state: directory
   tags: [config]
 
-- name: Find all top-level contents in dotfiles/.config/nvim
-  find:
-    paths: "{{ dotfiles_dir }}/.config/nvim"
-    hidden: yes
-    file_type: any
-  register: nvim_contents
-  tags: [config, nvim]
-
-- name: Ensure ~/.config/nvim exists
-  file:
+- name: Check if ~/.config/nvim exists
+  stat:
     path: "{{ config_dir }}/nvim"
-    state: directory
+  register: nvim_stat
   tags: [config, nvim]
 
-- name: Symlink nvim contents
+- name: Backup existing ~/.config/nvim
+  shell: rm -rf "{{ config_dir }}/nvim_autobak" && mv "{{ config_dir }}/nvim" "{{ config_dir }}/nvim_autobak"
+  when: nvim_stat.stat.exists and nvim_stat.stat.isdir and not nvim_stat.stat.islnk
+  tags: [config, nvim]
+
+- name: Symlink nvim directory
   file:
-    src: "{{ item.path }}"
-    dest: "{{ config_dir }}/nvim/{{ item.path | basename }}"
+    src: "{{ dotfiles_dir }}/.config/nvim"
+    dest: "{{ config_dir }}/nvim"
     state: link
     force: yes
-  with_items: "{{ nvim_contents.files }}"
   tags: [config, nvim]
 
-- name: Find all top-level contents in dotfiles/.config/yazi
-  find:
-    paths: "{{ dotfiles_dir }}/.config/yazi"
-    hidden: yes
-    file_type: any
-  register: yazi_contents
-  tags: [config, yazi]
-
-- name: Ensure ~/.config/yazi exists
-  file:
+- name: Check if ~/.config/yazi exists
+  stat:
     path: "{{ config_dir }}/yazi"
-    state: directory
+  register: yazi_stat
   tags: [config, yazi]
 
-- name: Symlink yazi contents
+- name: Backup existing ~/.config/yazi
+  shell: rm -rf "{{ config_dir }}/yazi_autobak" && mv "{{ config_dir }}/yazi" "{{ config_dir }}/yazi_autobak"
+  when: yazi_stat.stat.exists and yazi_stat.stat.isdir and not yazi_stat.stat.islnk
+  tags: [config, yazi]
+
+- name: Symlink yazi directory
   file:
-    src: "{{ item.path }}"
-    dest: "{{ config_dir }}/yazi/{{ item.path | basename }}"
+    src: "{{ dotfiles_dir }}/.config/yazi"
+    dest: "{{ config_dir }}/yazi"
     state: link
     force: yes
-  with_items: "{{ yazi_contents.files }}"
   tags: [config, yazi]
