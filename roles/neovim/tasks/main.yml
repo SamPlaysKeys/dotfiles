@@ -6,10 +6,20 @@
   when: ansible_os_family == 'Darwin'
   tags: [neovim, install]
 
+- name: Ensure /tmp/neovim directory is removed for a fresh build
+  file:
+    path: /tmp/neovim
+    state: absent
+  become: yes
+  when: ansible_os_family != 'Darwin'
+  tags: [neovim, install]
+
 - name: Ensure /tmp/neovim directory exists
   file:
     path: /tmp/neovim
     state: directory
+    owner: "{{ ansible_user_id }}"
+    mode: '0755'
   when: ansible_os_family != 'Darwin'
   tags: [neovim, install]
 
