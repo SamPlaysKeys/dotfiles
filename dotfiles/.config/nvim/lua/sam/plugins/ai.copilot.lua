@@ -1,4 +1,3 @@
--- File: lua/plugins/copilot.lua
 return {
   enabled = false,
   "github/copilot.vim", -- Official GitHub Copilot plugin
