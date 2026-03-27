@@ -14,8 +14,8 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- delete characters without copying into register
 keymap.set("n", "x", '"_x')
-vim.keymap.set('n', 'd', '"_d', { noremap = true })
-vim.keymap.set('v', 'd', '"_d', { noremap = true })
+keymap.set('n', 'd', '"_d', { noremap = true })
+keymap.set('v', 'd', '"_d', { noremap = true })
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
