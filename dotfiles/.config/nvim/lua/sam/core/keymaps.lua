@@ -34,6 +34,7 @@ keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 keymap.set("n", "<leader>tt", "<cmd>tabnew<CR><cmd>terminal<CR><cmd>startinsert<CR>", { desc = "Open Terminal in a new tab" }) -- open new tab, launch terminal, switch to insert
+keymap.set("n", "<leader>ty", "<cmd>vsplit<CR><cmd>term<CR><cmd>wincmd h<CR><cmd>term<CR><cmd>startinsert<CR>", { desc = "Open side-by-side terminals" }) -- Split the window, with Terminal on each side
 
 -- Exit the "Terminal Mode" with Ctrl + Space
 keymap.set("t", '<C-Space>', "<C-\\><C-n>",{silent = true})
