@@ -27,7 +27,7 @@
   git:
     repo: https://github.com/neovim/neovim.git
     dest: /tmp/neovim
-    version: stable
+    version: v0.11.6
     depth: 1
   when: ansible_os_family != 'Darwin'
   tags: [neovim, install]
