@@ -1,4 +1,14 @@
 ---
+# - name: Install zsh
+#   apt:
+#     name: zsh
+#     state: present
+
+# - name: Set zsh as default shell
+#   user:
+#     name: sfadmin
+#     shell: /bin/zsh
+
 - name: Check if ~/.zshrc exists
   stat:
     path: "{{ ansible_env.HOME }}/.zshrc"
@@ -20,4 +30,6 @@
 - name: set new zshrc file as source
   shell: "source {{ ansible_env.HOME }}/.zshrc"
   when: zshrc_stat.stat.exists
+  args:
+    executable: /bin/zsh 
   tags: [config, zsh]
