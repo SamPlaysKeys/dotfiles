@@ -46,3 +46,11 @@
   become: yes
   when: ansible_os_family == 'RedHat'
   tags: [dependencies, install]
+
+- name: Attempt to install npm
+  package:
+    name: npm
+    state: present
+  become: "{{ 'yes' if ansible_os_family != 'Darwin' else 'no' }}"
+  ignore_errors: yes
+  tags: [dependencies, install]
