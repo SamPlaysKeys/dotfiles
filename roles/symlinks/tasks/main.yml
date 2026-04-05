@@ -1,0 +1,44 @@
+---
+- name: Ensure .config directory exists
+  file:
+    path: "{{ config_dir }}"
+    state: directory
+  tags: [config]
+
+- name: Check if ~/.config/nvim exists
+  stat:
+    path: "{{ config_dir }}/nvim"
+  register: nvim_stat
+  tags: [config, nvim]
+
+- name: Backup existing ~/.config/nvim
+  shell: rm -rf "{{ config_dir }}/nvim_autobak" && mv "{{ config_dir }}/nvim" "{{ config_dir }}/nvim_autobak"
+  when: nvim_stat.stat.exists and nvim_stat.stat.isdir and not nvim_stat.stat.islnk
+  tags: [config, nvim]
+
+- name: Symlink nvim directory
+  file:
+    src: "{{ dotfiles_dir }}/.config/nvim"
+    dest: "{{ config_dir }}/nvim"
+    state: link
+    force: yes
+  tags: [config, nvim]
+
+- name: Check if ~/.config/yazi exists
+  stat:
+    path: "{{ config_dir }}/yazi"
+  register: yazi_stat
+  tags: [config, yazi]
+
+- name: Backup existing ~/.config/yazi
+  shell: rm -rf "{{ config_dir }}/yazi_autobak" && mv "{{ config_dir }}/yazi" "{{ config_dir }}/yazi_autobak"
+  when: yazi_stat.stat.exists and yazi_stat.stat.isdir and not yazi_stat.stat.islnk
+  tags: [config, yazi]
+
+- name: Symlink yazi directory
+  file:
+    src: "{{ dotfiles_dir }}/.config/yazi"
+    dest: "{{ config_dir }}/yazi"
+    state: link
+    force: yes
+  tags: [config, yazi]
