@@ -38,3 +38,6 @@ keymap.set("n", "<leader>ty", "<cmd>vsplit<CR><cmd>term<CR><cmd>wincmd h<CR><cmd
 
 -- Exit the "Terminal Mode" with Ctrl + Space
 keymap.set("t", '<C-Space>', "<C-\\><C-n>",{silent = true})
+
+-- undotree
+keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle UndoTree" })
