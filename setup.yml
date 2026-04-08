@@ -45,6 +45,7 @@
     - role: dependencies
     - role: general_apps
     - role: neovim
+    - role: hackfont
     - role: yazi
     - role: symlinks
     - role: zsh
