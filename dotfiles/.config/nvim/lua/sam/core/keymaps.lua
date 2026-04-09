@@ -16,6 +16,8 @@ keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 keymap.set("n", "x", '"_x')
 keymap.set('n', 'd', '"_d', { noremap = true })
 keymap.set('v', 'd', '"_d', { noremap = true })
+keymap.set('n', 'D', '"_D', { noremap = true })
+keymap.set('v', 'D', '"_D', { noremap = true })
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>", { desc = "Increment number" }) -- increment
