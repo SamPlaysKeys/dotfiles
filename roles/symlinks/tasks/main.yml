@@ -18,7 +18,7 @@
 
 - name: Symlink nvim directory
   file:
-    src: "{{ dotfiles_dir }}/.config/nvim"
+    src: "{{ dotfiles_dir }}/config/nvim"
     dest: "{{ config_dir }}/nvim"
     state: link
     force: yes
@@ -37,7 +37,7 @@
 
 - name: Symlink yazi directory
   file:
-    src: "{{ dotfiles_dir }}/.config/yazi"
+    src: "{{ dotfiles_dir }}/config/yazi"
     dest: "{{ config_dir }}/yazi"
     state: link
     force: yes

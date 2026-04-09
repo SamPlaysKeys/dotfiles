@@ -22,7 +22,7 @@
 
 - name: Copy .zshrc to home directory
   copy:
-    src: "{{ dotfiles_dir }}/.zshrc"
+    src: "{{ dotfiles_dir }}/zshrc"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     mode: '0644'
   tags: [config, zsh]
