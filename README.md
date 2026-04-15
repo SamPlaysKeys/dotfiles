@@ -16,10 +16,16 @@ A `setup.yml` Ansible playbook is included to automate the installation of depen
 
 ### Running the Playbook
 
-To run the full setup, use the `--ask-become-pass` (or `-K`) flag to provide your sudo password:
+**First-time setup:** Install the required Ansible collection:
 
 ```bash
-ansible-playbook setup.yml -K
+ansible-galaxy collection install community.general
+```
+
+Then run the playbook with the `--ask-become-pass` (or `-K`) flag to provide your sudo password:
+
+```bash
+ansible-playbook setup.yml -i "localhost," -K
 ```
 
 ### Selective Execution (Using Tags)
