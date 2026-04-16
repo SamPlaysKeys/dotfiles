@@ -1,5 +1,5 @@
 ---
-default_apps:
+general_apps:
   Debian:
     - tree
     - bat
