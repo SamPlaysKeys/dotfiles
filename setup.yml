@@ -49,6 +49,7 @@
   roles:
     - role: dependencies
     - role: general_apps
+    - role: lazygit
     - role: neovim
     - role: hackfont
     - role: yazi
