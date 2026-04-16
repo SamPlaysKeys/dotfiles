@@ -10,41 +10,9 @@
         msg: "This playbook requires the community.general collection. If you encounter module errors, run: ansible-galaxy collection install community.general (see README for details)"
 
   vars:
-    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
     config_dir: "{{ ansible_env.HOME }}/.config"
     install_full_applist: false
-    dependencies:
-      Darwin:
-        - cmake
-        - ninja
-        - gettext
-        - rust
-      Debian:
-        - ninja-build
-        - gettext
-        - cmake
-        - unzip
-        - curl
-        - build-essential
-        - ffmpeg
-        - 7zip
-        - jq
-        - poppler-utils
-        - fd-find
-        - ripgrep
-        - fzf
-        - zoxide
-        - imagemagick
-      RedHat:
-        - ninja-build
-        - cmake
-        - gcc
-        - make
-        - unzip
-        - gettext
-        - curl
-        - cargo
-        - rust
 
   roles:
     - role: dependencies
