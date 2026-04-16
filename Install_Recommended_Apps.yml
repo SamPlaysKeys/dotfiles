@@ -1,0 +1,25 @@
+---
+- name: Install Recommended Apps and Tools
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Reminder - community.general collection required
+      debug:
+        msg: "This playbook requires the community.general collection. If you encounter module errors, run: ansible-galaxy collection install community.general (see README for details)"
+
+  vars:
+    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    install_full_applist: true
+
+  roles:
+    - role: dependencies
+    - role: general_apps
+    - role: lazygit
+    - role: hackfont
+    - role: yazi
+    - role: neovim
+    - role: symlinks
+    - role: zsh

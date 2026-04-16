@@ -1,0 +1,39 @@
+---
+- name: Neovim and Yazi Setup
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Reminder - community.general collection required
+      debug:
+        msg: "This playbook requires the community.general collection. If you encounter module errors, run: ansible-galaxy collection install community.general (see README for details)"
+
+  vars:
+    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    install_full_applist: false
+
+  roles:
+    - role: dependencies
+    - role: hackfont
+    - role: lazygit
+    - role: yazi
+    - role: neovim
+    - role: symlinks
+
+  post_tasks:
+    - name: Recommend Yazi launcher command
+      debug:
+        msg: |
+          Installation complete!
+          We recommend adding the following 'y' command to your shell rc file (e.g. ~/.zshrc or ~/.bashrc) so that exiting yazi changes your working directory:
+          
+          function y() {
+              local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+              yazi "$@" --cwd-file="$tmp"
+              if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+                  builtin cd -- "$cwd"
+              fi
+              rm -f -- "$tmp"
+          }

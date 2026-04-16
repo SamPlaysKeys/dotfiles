@@ -1,0 +1,33 @@
+---
+dependencies:
+  Darwin:
+    - cmake
+    - ninja
+    - gettext
+    - rust
+  Debian:
+    - ninja-build
+    - gettext
+    - cmake
+    - unzip
+    - curl
+    - build-essential
+    - ffmpeg
+    - 7zip
+    - jq
+    - poppler-utils
+    - fd-find
+    - ripgrep
+    - fzf
+    - zoxide
+    - imagemagick
+  RedHat:
+    - ninja-build
+    - cmake
+    - gcc
+    - make
+    - unzip
+    - gettext
+    - curl
+    - cargo
+    - rust
