@@ -5,8 +5,9 @@ This directory contains the Neovim configuration for the dotfiles.
 ## Organization
 
 - **`init.lua`**: The main entry point for Neovim.
-- **`lua/sam/`**: The core configuration directory.
+- **`lua/`**: The main configuration directory.
   - **`core/`**: Contains core settings like `options.lua`, `keymaps.lua`, and `autocmds.lua`.
+  - **`lazy_init.lua`**: Initializes the Lazy.nvim plugin manager.
   - **`plugins/`**: Contains individual plugin configurations managed by Lazy.nvim.
 - **`lazy-lock.json`**: Lockfile for Lazy.nvim plugin versions.
 

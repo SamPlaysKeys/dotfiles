@@ -9,9 +9,9 @@ Your nvim configuration is organized as follows:
 ```
 ~/.config/nvim/
 ├── init.lua
-└── lua/sam/
+└── lua/
     ├── core/
-    ├── lazy.lua
+    ├── lazy_init.lua
     └── plugins/
         ├── init.lua
         ├── telescope.lua
@@ -22,32 +22,32 @@ Your nvim configuration is organized as follows:
 
 ## How Plugin Loading Works
 
-Your `lazy.lua` file imports all plugins from the `sam.plugins` module:
+Your `lazy_init.lua` file imports all plugins from the `plugins` module:
 
 ```lua
-require("lazy").setup({ import = "sam.plugins" }, {
+require("lazy").setup({ import = "plugins" }, {
   -- lazy configuration options
 })
 ```
 
-This means any `.lua` file you create in the `lua/sam/plugins/` directory will be automatically loaded by Lazy.nvim.
+This means any `.lua` file you create in the `lua/plugins/` directory will be automatically loaded by Lazy.nvim.
 
 ## Where to Add New Plugins
 
 You have two main options for adding plugins:
 
 ### Option 1: Add to Existing Files
-- **Simple plugins**: Add to `lua/sam/plugins/init.lua`
+- **Simple plugins**: Add to `lua/plugins/init.lua`
 - **Related plugins**: Add to an existing relevant plugin file
 
 ### Option 2: Create Dedicated Plugin Files (Recommended)
-Create a separate `.lua` file in the `lua/sam/plugins/` directory for each new plugin or group of related plugins.
+Create a separate `.lua` file in the `lua/plugins/` directory for each new plugin or group of related plugins.
 
 ## Plugin Configuration Examples
 
 ### Simple Plugin (No Configuration)
 
-Create a new file: `lua/sam/plugins/simple-plugin.lua`
+Create a new file: `lua/plugins/simple-plugin.lua`
 
 ```lua
 return {
@@ -57,7 +57,7 @@ return {
 
 ### Plugin with Basic Options
 
-Create a new file: `lua/sam/plugins/configured-plugin.lua`
+Create a new file: `lua/plugins/configured-plugin.lua`
 
 ```lua
 return {
@@ -72,7 +72,7 @@ return {
 
 ### Plugin with Custom Configuration Function
 
-Create a new file: `lua/sam/plugins/advanced-plugin.lua`
+Create a new file: `lua/plugins/advanced-plugin.lua`
 
 ```lua
 return {
@@ -111,7 +111,7 @@ return {
 
 ### Multiple Related Plugins in One File
 
-Create a new file: `lua/sam/plugins/related-plugins.lua`
+Create a new file: `lua/plugins/related-plugins.lua`
 
 ```lua
 return {
@@ -144,7 +144,7 @@ return {
 
 Let's say you want to add the `nvim-colorizer` plugin. Create a new file:
 
-`lua/sam/plugins/colorizer.lua`
+`lua/plugins/colorizer.lua`
 
 ```lua
 return {
