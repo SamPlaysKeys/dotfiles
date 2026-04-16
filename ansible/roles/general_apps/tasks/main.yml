@@ -1,6 +1,6 @@
 ---
 - name: Install full application list from Brewfile (macOS)
-  command: brew bundle --file={{ playbook_dir }}/Brewfile
+  command: brew bundle --file={{ playbook_dir }}/../Brewfile
   when: ansible_os_family == 'Darwin' and (install_full_applist | default(false) | bool)
   tags: [apps, install, dependencies]
 

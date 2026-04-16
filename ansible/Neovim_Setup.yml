@@ -10,7 +10,7 @@
         msg: "This playbook requires the community.general collection. If you encounter module errors, run: ansible-galaxy collection install community.general (see README for details)"
 
   vars:
-    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
     config_dir: "{{ ansible_env.HOME }}/.config"
     install_full_applist: false
 

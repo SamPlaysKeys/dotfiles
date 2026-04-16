@@ -1,5 +1,5 @@
 ---
-- name: Install Neovim and Yazi from source and setup configs
+- name: Install Recommended Apps and Tools
   hosts: localhost
   connection: local
   gather_facts: yes
@@ -10,16 +10,16 @@
         msg: "This playbook requires the community.general collection. If you encounter module errors, run: ansible-galaxy collection install community.general (see README for details)"
 
   vars:
-    dotfiles_dir: "{{ playbook_dir }}/dotfiles"
+    dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
     config_dir: "{{ ansible_env.HOME }}/.config"
-    install_full_applist: false
+    install_full_applist: true
 
   roles:
     - role: dependencies
     - role: general_apps
     - role: lazygit
-    - role: neovim
     - role: hackfont
     - role: yazi
+    - role: neovim
     - role: symlinks
     - role: zsh
