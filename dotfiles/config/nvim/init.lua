@@ -1,2 +1,2 @@
-require("sam.core")
-require("sam.lazy")
+require("core")
+require("lazy_init")
