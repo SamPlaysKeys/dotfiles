@@ -1,13 +1,36 @@
 ---
-# - name: Install zsh
-#   apt:
-#     name: zsh
-#     state: present
+- name: Install zsh (Debian)
+  apt:
+    name: zsh
+    state: present
+    update_cache: yes
+  become: yes
+  when: ansible_os_family == 'Debian'
+  tags: [install, zsh]
 
-# - name: Set zsh as default shell
-#   user:
-#     name: sfadmin
-#     shell: /bin/zsh
+- name: Install zsh (RedHat)
+  dnf:
+    name: zsh
+    state: present
+  become: yes
+  when: ansible_os_family == 'RedHat'
+  tags: [install, zsh]
+
+- name: Set zsh as default shell
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /bin/zsh
+  become: yes
+  when: ansible_os_family != 'Darwin'
+  tags: [config, zsh]
+
+- name: Ensure ~/.zshrc.local exists
+  copy:
+    content: ""
+    dest: "{{ ansible_env.HOME }}/.zshrc.local"
+    force: no
+    mode: '0644'
+  tags: [config, zsh]
 
 - name: Check if ~/.zshrc exists
   stat:

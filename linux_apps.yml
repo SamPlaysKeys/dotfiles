@@ -1,0 +1,24 @@
+---
+default_apps:
+  Debian:
+    - tree
+    - bat
+    - htop
+    - fastfetch
+    - git
+    - wget
+    - curl
+    - tmux
+    - tldr
+    - ncdu
+  RedHat:
+    - tree
+    - bat
+    - htop
+    - fastfetch
+    - git
+    - wget
+    - curl
+    - tmux
+    - tldr
+    - ncdu
