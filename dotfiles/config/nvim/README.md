@@ -12,3 +12,5 @@ This directory contains the Neovim configuration for the dotfiles.
 - **`lazy-lock.json`**: Lockfile for Lazy.nvim plugin versions.
 
 This setup is designed to provide a modern, IDE-like experience using LSP, Treesitter, and other modern Neovim plugins.
+
+Some inspiration for recent additions has come from [Larvitz/nvim-ansible](https://codeberg.org/Larvitz/nvim-ansible)
