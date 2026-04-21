@@ -1,22 +1,22 @@
 ---
 - name: Install full application list from Brewfile (macOS)
-  command: brew bundle --file={{ playbook_dir }}/../Brewfile
+  ansible.builtin.command: brew bundle --file={{ playbook_dir }}/../Brewfile
   when: ansible_os_family == 'Darwin' and (install_full_applist | default(false) | bool)
   tags: [apps, install, dependencies]
 
 - name: Install default apps (Debian)
-  apt:
+  ansible.builtin.apt:
     name: "{{ general_apps['Debian'] }}"
     state: present
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
   when: ansible_os_family == 'Debian'
   tags: [apps, install, dependencies]
 
 - name: Install default apps (RedHat)
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ general_apps['RedHat'] }}"
     state: present
-  become: yes
+  become: true
   when: ansible_os_family == 'RedHat'
   tags: [apps, install, dependencies]

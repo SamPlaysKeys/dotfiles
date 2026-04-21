@@ -5,6 +5,8 @@ tap "warpdotdev/warp"
 brew "tree"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Linting for Ansible
+brew "ansible-lint"
 # Microsoft Azure CLI 2.0
 brew "azure-cli"
 # Clone of cat(1) with syntax highlighting and Git integration

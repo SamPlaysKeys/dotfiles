@@ -1,56 +1,56 @@
 ---
 - name: Check if Homebrew is installed (macOS)
-  command: command -v brew
+  ansible.builtin.command: command -v brew
   register: brew_check
-  ignore_errors: yes
+  ignore_errors: true
   when: ansible_os_family == 'Darwin'
   tags: [dependencies, install]
 
 - name: Install Homebrew (macOS)
-  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ansible.builtin.shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   when: ansible_os_family == 'Darwin' and brew_check.rc != 0
   tags: [dependencies, install]
 
 - name: Install macOS dependencies for Neovim and Yazi
-  homebrew:
+  community.general.homebrew:
     name: "{{ dependencies['Darwin'] }}"
     state: present
   when: ansible_os_family == 'Darwin'
   tags: [dependencies, install]
 
 - name: Install Debian dependencies for Neovim and Yazi
-  apt:
+  ansible.builtin.apt:
     name: "{{ dependencies['Debian'] }}"
     state: present
-    update_cache: yes
-  become: yes
+    update_cache: true
+  become: true
   when: ansible_os_family == 'Debian'
   tags: [dependencies, install]
 
 - name: Check if Rust is installed (Debian)
-  stat:
+  ansible.builtin.stat:
     path: "{{ ansible_env.HOME }}/.cargo/bin/cargo"
   register: cargo_stat
   when: ansible_os_family == 'Debian'
   tags: [dependencies, install]
 
 - name: Install Rust via rustup (Debian)
-  shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+  ansible.builtin.shell: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   when: ansible_os_family == 'Debian' and not cargo_stat.stat.exists
   tags: [dependencies, install]
 
 - name: Install Fedora/RedHat dependencies for Neovim and Yazi
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ dependencies['RedHat'] }}"
     state: present
-  become: yes
+  become: true
   when: ansible_os_family == 'RedHat'
   tags: [dependencies, install]
 
 - name: Attempt to install npm
-  package:
+  ansible.builtin.package:
     name: npm
     state: present
   become: "{{ 'yes' if ansible_os_family != 'Darwin' else 'no' }}"
-  ignore_errors: yes
+  ignore_errors: true
   tags: [dependencies, install]

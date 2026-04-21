@@ -1,22 +1,22 @@
 ---
 - name: Set font destination path for macOS
-  set_fact:
+  ansible.builtin.set_fact:
     font_dest: "~/Library/Fonts"
   when: ansible_os_family == 'Darwin'
 
 - name: Set font destination path for Linux
-  set_fact:
+  ansible.builtin.set_fact:
     font_dest: "~/.local/share/fonts"
   when: ansible_system == 'Linux'
 
 - name: Ensure font directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ font_dest }}"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Copy directories from files to font destination
-  copy:
+  ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ font_dest }}/"
   loop:
@@ -25,6 +25,6 @@
     - web
 
 - name: Update font cache on Linux
-  command: fc-cache -fv
+  ansible.builtin.command: fc-cache -fv
   when: ansible_system == 'Linux'
   changed_when: false
