@@ -1,70 +1,70 @@
 ---
 - name: Ensure .config directory exists
-  file:
+  ansible.builtin.file:
     path: "{{ config_dir }}"
     state: directory
   tags: [config]
 
 - name: Check if ~/.config/nvim exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ config_dir }}/nvim"
   register: nvim_stat
   tags: [config, nvim]
 
 - name: Backup existing ~/.config/nvim
-  shell: rm -rf "{{ config_dir }}/nvim_autobak" && mv "{{ config_dir }}/nvim" "{{ config_dir }}/nvim_autobak"
+  ansible.builtin.shell: rm -rf "{{ config_dir }}/nvim_autobak" && mv "{{ config_dir }}/nvim" "{{ config_dir }}/nvim_autobak"
   when: nvim_stat.stat.exists and nvim_stat.stat.isdir and not nvim_stat.stat.islnk
   tags: [config, nvim]
 
 - name: Symlink nvim directory
-  file:
+  ansible.builtin.file:
     src: "{{ dotfiles_dir }}/config/nvim"
     dest: "{{ config_dir }}/nvim"
     state: link
-    force: yes
+    force: true
   tags: [config, nvim]
 
 - name: Check if ~/.config/yazi exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ config_dir }}/yazi"
   register: yazi_stat
   tags: [config, yazi]
 
 - name: Backup existing ~/.config/yazi
-  shell: rm -rf "{{ config_dir }}/yazi_autobak" && mv "{{ config_dir }}/yazi" "{{ config_dir }}/yazi_autobak"
+  ansible.builtin.shell: rm -rf "{{ config_dir }}/yazi_autobak" && mv "{{ config_dir }}/yazi" "{{ config_dir }}/yazi_autobak"
   when: yazi_stat.stat.exists and yazi_stat.stat.isdir and not yazi_stat.stat.islnk
   tags: [config, yazi]
 
 - name: Symlink yazi directory
-  file:
+  ansible.builtin.file:
     src: "{{ dotfiles_dir }}/config/yazi"
     dest: "{{ config_dir }}/yazi"
     state: link
-    force: yes
+    force: true
   tags: [config, yazi]
 
 - name: Check if ~/.zshrc exists
-  stat:
+  ansible.builtin.stat:
     path: "{{ ansible_env.HOME }}/.zshrc"
   register: zshrc_stat
   tags: [config, zsh, symlinks]
 
 - name: Backup existing ~/.zshrc
-  shell: rm -f "{{ ansible_env.HOME }}/.zshrc_autobak" && mv "{{ ansible_env.HOME }}/.zshrc" "{{ ansible_env.HOME }}/.zshrc_autobak"
+  ansible.builtin.shell: rm -f "{{ ansible_env.HOME }}/.zshrc_autobak" && mv "{{ ansible_env.HOME }}/.zshrc" "{{ ansible_env.HOME }}/.zshrc_autobak"
   when: zshrc_stat.stat.exists and not zshrc_stat.stat.islnk
   tags: [config, zsh, symlinks]
 
 - name: Symlink zshrc file
-  file:
+  ansible.builtin.file:
     src: "{{ dotfiles_dir }}/zshrc"
     dest: "{{ ansible_env.HOME }}/.zshrc"
     state: link
-    force: yes
+    force: true
   tags: [config, zsh, symlinks]
 
 - name: Set new zshrc file as source
-  shell: "source {{ ansible_env.HOME }}/.zshrc"
+  ansible.builtin.shell: "source {{ ansible_env.HOME }}/.zshrc"
   when: zshrc_stat.stat.exists
   args:
-    executable: /bin/zsh 
+    executable: /bin/zsh
   tags: [config, zsh, symlinks]

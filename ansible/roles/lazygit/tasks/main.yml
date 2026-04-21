@@ -1,20 +1,20 @@
 ---
 - name: Check if lazygit is installed
-  command: command -v lazygit
+  ansible.builtin.command: command -v lazygit
   register: lazygit_check
-  ignore_errors: yes
+  ignore_errors: true
   changed_when: false
   tags: [lazygit, install]
 
 - name: Install lazygit (macOS)
-  homebrew:
+  community.general.homebrew:
     name: lazygit
     state: present
   when: ansible_os_family == 'Darwin' and lazygit_check.rc != 0
   tags: [lazygit, install]
 
 - name: Install lazygit (Linux)
-  shell: |
+  ansible.builtin.shell: |
     LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
