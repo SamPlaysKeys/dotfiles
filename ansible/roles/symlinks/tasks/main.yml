@@ -43,6 +43,25 @@
     force: true
   tags: [config, yazi]
 
+- name: Check if ~/.config/lazygit exists
+  ansible.builtin.stat:
+    path: "{{ config_dir }}/lazygit"
+  register: lazygit_stat
+  tags: [config, lazygit]
+
+- name: Backup existing ~/.config/lazygit
+  ansible.builtin.shell: rm -rf "{{ config_dir }}/lazygit_autobak" && mv "{{ config_dir }}/lazygit" "{{ config_dir }}/lazygit_autobak"
+  when: lazygit_stat.stat.exists and lazygit_stat.stat.isdir and not lazygit_stat.stat.islnk
+  tags: [config, lazygit]
+
+- name: Symlink lazygit directory
+  ansible.builtin.file:
+    src: "{{ dotfiles_dir }}/config/lazygit"
+    dest: "{{ config_dir }}/lazygit"
+    state: link
+    force: true
+  tags: [config, lazygit]
+
 - name: Check if ~/.zshrc exists
   ansible.builtin.stat:
     path: "{{ ansible_env.HOME }}/.zshrc"
