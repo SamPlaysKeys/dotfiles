@@ -96,6 +96,10 @@
   when: ansible_os_family == 'Darwin'
   tags: [yazi, install]
 
+# The following task displays instructions for setting up the 'y' shell function.
+# This function allows Yazi to change the shell's working directory upon exit
+# by using a temporary file to store the final path.
+
 - name: Recommend Yazi launcher command
   debug:
     msg: |
