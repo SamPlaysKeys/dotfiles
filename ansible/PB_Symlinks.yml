@@ -1,0 +1,13 @@
+---
+- name: Neovim and Yazi Setup
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars:
+    dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    install_full_applist: false
+
+  roles:
+    - role: symlinks

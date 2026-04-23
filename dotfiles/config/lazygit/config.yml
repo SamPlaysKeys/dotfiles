@@ -1,5 +1,6 @@
 gui:
   theme:
+    # --- Catppuccin Mocha ---
     activeBorderColor:
       - '#89b4fa'
       - bold
@@ -19,6 +20,48 @@ gui:
       - '#cdd6f4'
     searchingActiveBorderColor:
       - '#f9e2af'
+
+    # --- Dracula ---
+    # activeBorderColor:
+    #   - '#ff79c6'
+    #   - bold
+    # inactiveBorderColor:
+    #   - '#6272a4'
+    # optionsTextColor:
+    #   - '#8be9fd'
+    # selectedLineBgColor:
+    #   - '#44475a'
+    # cherryPickedCommitBgColor:
+    #   - '#6272a4'
+    # cherryPickedCommitFgColor:
+    #   - '#ff79c6'
+    # unstagedChangesColor:
+    #   - '#ff5555'
+    # defaultFgColor:
+    #   - '#f8f8f2'
+    # searchingActiveBorderColor:
+    #   - '#ffb86c'
+
+    # --- Kanagawa Wave ---
+    # activeBorderColor:
+    #   - '#7E9CD8'
+    #   - bold
+    # inactiveBorderColor:
+    #   - '#54546D'
+    # optionsTextColor:
+    #   - '#7E9CD8'
+    # selectedLineBgColor:
+    #   - '#2A2A37'
+    # cherryPickedCommitBgColor:
+    #   - '#49443C'
+    # cherryPickedCommitFgColor:
+    #   - '#98BB6C'
+    # unstagedChangesColor:
+    #   - '#C34043'
+    # defaultFgColor:
+    #   - '#DCD7BA'
+    # searchingActiveBorderColor:
+    #   - '#7E9CD8'
 
   authorColors:
     '*': '#b4befe'
