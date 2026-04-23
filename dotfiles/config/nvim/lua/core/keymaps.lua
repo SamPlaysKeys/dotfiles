@@ -13,10 +13,10 @@ keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
 -- use hjkl as arrow keys in Insert mode
-keymap.set('i', '<C-h>', '<Left>', { noremap = true })
-keymap.set('i', '<C-j>', '<Down>', { noremap = true })
-keymap.set('i', '<C-k>', '<Up>', { noremap = true })
-keymap.set('i', '<C-l>', '<Right>', { noremap = true })
+keymap.set({'i', 't'}, '<C-h>', '<Left>', { noremap = true })
+keymap.set({'i', 't'}, '<C-j>', '<Down>', { noremap = true })
+keymap.set({'i', 't'}, '<C-k>', '<Up>', { noremap = true })
+keymap.set({'i', 't'}, '<C-l>', '<Right>', { noremap = true })
 
 -- delete characters without copying into register
 keymap.set("n", "x", '"_x')
