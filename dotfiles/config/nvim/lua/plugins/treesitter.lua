@@ -20,6 +20,7 @@ return {
     treesitter.setup({ -- enable syntax highlighting
       highlight = {
         enable = true,
+        disable = { "csv" },  -- Let rainbow_csv handle CSV highlighting
       },
       -- enable indentation
       indent = { enable = true },
@@ -29,7 +30,6 @@ return {
       },
       -- ensure these language parsers are installed
       ensure_installed = {
-        "csv",
         "json",
         "javascript",
         "jinja",
