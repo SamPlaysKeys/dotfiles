@@ -3,6 +3,17 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
   opts = {
     focus = true,
+    modes = {
+      diagnostics_split = {
+        mode = "diagnostics",
+        preview = {
+          type = "split",
+          relative = "win",
+          position = "right",
+          size = 0.3,
+        },
+      },
+    },
   },
   cmd = "Trouble",
   keys = {
@@ -11,5 +22,6 @@ return {
     { "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", desc = "Open trouble quickfix list" },
     { "<leader>xl", "<cmd>Trouble loclist toggle<CR>", desc = "Open trouble location list" },
     { "<leader>xt", "<cmd>Trouble todo toggle<CR>", desc = "Open todos in trouble" },
+    { "<leader>xs", "<cmd>Trouble diagnostics_split toggle<CR>", desc = "Open trouble with split preview" },
   },
 }
