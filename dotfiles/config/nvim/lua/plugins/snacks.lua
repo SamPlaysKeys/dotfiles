@@ -73,5 +73,6 @@ return {
   },
   keys = {
     { "<leader>uw", function() Snacks.toggle.option("list"):toggle() end, desc = "Toggle Whitespace (listchars)" },
+    { "<leader>gd", function() Snacks.dashboard() end, desc = "Dashboard" },
   },
 }
