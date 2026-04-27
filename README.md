@@ -4,15 +4,15 @@
 
 This repository contains my personal development environment configuration files and setup scripts for **macOS**, **Debian**, and **RedHat**. The setup focuses on creating an efficient, modern development workflow centered around **Neovim**, **Yazi**, and **Zsh**.
 
-## Dotfiles Location
+## Configs Location
 
-All of the actual configuration files are cleanly organized inside the `dotfiles/` directory.
+All of the actual configuration files are cleanly organized inside the `configs/` directory.
 
-- **`dotfiles/zshrc`**: Zsh configuration.
-- **`dotfiles/gitconfig`**: Git configuration.
-- **`dotfiles/config/`**: App-specific configs meant to be symlinked to `~/.config/` (e.g., Neovim, Yazi).
+- **`configs/zshrc`**: Zsh configuration.
+- **`configs/gitconfig`**: Git configuration.
+- **`configs/nvim/`**, **`configs/yazi/`**, etc.: App-specific configs meant to be symlinked to `~/.config/`.
 
-> **Note:** For details on how the Neovim configuration is structured, see the [Neovim README](dotfiles/config/nvim/README.md).
+> **Note:** For details on how the Neovim configuration is structured, see the [Neovim README](configs/nvim/README.md).
 
 ## Requirements
 

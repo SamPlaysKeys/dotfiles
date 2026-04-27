@@ -5,7 +5,7 @@
   gather_facts: yes
 
   vars:
-    dotfiles_dir: "{{ playbook_dir }}/../dotfiles"
+    dotfiles_dir: "{{ playbook_dir }}/../configs"
     config_dir: "{{ ansible_env.HOME }}/.config"
     install_full_applist: true
 
