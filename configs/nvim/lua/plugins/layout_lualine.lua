@@ -18,6 +18,8 @@ return {
       violet = "#FF61EF",
       yellow = "#FFDA7B",
       red = "#FF4A4A",
+      orange = "#FF9E64",
+      semilightgray = "#8b95a7",
       fg = "#c3ccdc",
       bg = "#112638",
       inactive_bg = "#2c3043",
@@ -52,6 +54,11 @@ return {
         b = { bg = branch_bg, fg = branch_fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
+      terminal = {
+        a = { bg = colors.orange, fg = colors.bg, gui = "bold" },
+        b = { bg = branch_bg, fg = branch_fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
       inactive = {
         a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },
         b = { bg = colors.inactive_bg, fg = colors.semilightgray },
@@ -59,19 +66,50 @@ return {
       },
     }
 
+    -- Shortened mode names
+    local mode_map = {
+      ["NORMAL"] = "NOR",
+      ["INSERT"] = "INS",
+      ["VISUAL"] = "VIS",
+      ["V-LINE"] = "V-L",
+      ["V-BLOCK"] = "V-B",
+      ["SELECT"] = "SEL",
+      ["S-LINE"] = "S-L",
+      ["S-BLOCK"] = "S-B",
+      ["REPLACE"] = "REP",
+      ["V-REPLACE"] = "V-R",
+      ["COMMAND"] = "CMD",
+      ["EX"] = "EX",
+      ["MORE"] = "MOR",
+      ["CONFIRM"] = "CON",
+      ["SHELL"] = "SH",
+      ["TERMINAL"] = "TER",
+    }
+
     -- configure lualine with modified theme
     lualine.setup({
       options = {
         theme = my_lualine_theme,
-        section_separators = { left = "\u{e0b0}", right = "\u{e0b2}" },
-        component_separators = { left = "\u{e0b1}", right = "\u{e0b3}" },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        globalstatus = true,
       },
       sections = {
+        lualine_a = {
+          {
+            "mode",
+            fmt = function(str)
+              return mode_map[str] or str
+            end,
+          },
+        },
         lualine_b = {
-          { "branch" },
+          {
+            "filename",
+            path = 4, -- 0=filename, 1=relative path, 2=absolute, 3=absolute with ~, 4=filename and parent dir
+          },
         },
         lualine_c = {
-          { "filename", path = 1 },  -- 0=filename, 1=relative path, 2=absolute, 3=absolute with ~
           { "diff" },
         },
         lualine_x = {
@@ -79,7 +117,9 @@ return {
           { "diagnostics" },
         },
         lualine_y = {},
+        lualine_z = { "branch" },
       },
+      extensions = { "floaterm", "lazy" },
     })
   end,
 }
