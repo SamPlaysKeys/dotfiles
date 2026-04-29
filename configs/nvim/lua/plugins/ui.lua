@@ -1,37 +1,29 @@
 -- Combined layout plugins
 
 return {
+
   -----------------------------------------------------------------------------
-  -- NOTE: aerial.nvim: Code outline/navigation
+  -- NOTE: outline.nvim: Function / Heading Navigation Pane
   -----------------------------------------------------------------------------
   {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-       "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
-    },
+    "hedyhli/outline.nvim",
     config = function()
-      require("aerial").setup({
-        layout = {
-          default_direction = "right",
-          resize_to_content = true,
-          preserve_equality = false,
-          placement = "window",
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>eo", "<cmd>Outline<CR>",
+        { desc = "Toggle Outline" })
+
+      require("outline").setup {
+        outline_window = {
+          show_cursorline = true,
+          hide_cursor = true,
         },
-        -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-        on_attach = function(bufnr)
-          -- Jump forwards/backwards with '{' and '}'
-          vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-          vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-        end,
-      })
-      -- You probably also want to set a keymap to toggle aerial
-      vim.keymap.set("n", "<leader>ea", "<cmd>AerialToggle!<CR>")
-  
+        preview_window = {
+          live = true,
+        },
+      }
     end,
   },
+
 
   -----------------------------------------------------------------------------
   -- NOTE: bufferline.nvim: Tab Bar
@@ -133,19 +125,19 @@ return {
           c = { bg = colors.inactive_bg, fg = colors.semilightgray },
         },
       }
-  
+
       -- Shortened mode names
       local mode_map = {
         ["NORMAL"] = "NOR",
         ["INSERT"] = "INS",
         ["VISUAL"] = "VIS",
-        ["V-LINE"] = "V-L",
-        ["V-BLOCK"] = "V-B",
+        ["V-LINE"] = "V-Line",
+        ["V-BLOCK"] = "V-Block",
         ["SELECT"] = "SEL",
-        ["S-LINE"] = "S-L",
-        ["S-BLOCK"] = "S-B",
+        ["S-LINE"] = "S-Line",
+        ["S-BLOCK"] = "S-Block",
         ["REPLACE"] = "REP",
-        ["V-REPLACE"] = "V-R",
+        ["V-REPLACE"] = "V-Rep",
         ["COMMAND"] = "CMD",
         ["EX"] = "EX",
         ["MORE"] = "MOR",
@@ -153,7 +145,7 @@ return {
         ["SHELL"] = "SH",
         ["TERMINAL"] = "TER",
       }
-  
+
       -- configure lualine with modified theme
       lualine.setup({
         options = {
