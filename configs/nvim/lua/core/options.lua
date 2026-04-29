@@ -40,15 +40,15 @@ opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
 -- Make window separators bolder
-opt.fillchars = {
-  vert = "┃",
-  horiz = "━",
-  horizup = "┻",
-  horizdown = "┳",
-  vertleft = "┫",
-  vertright = "┣",
-  verthoriz = "╋",
-}
+-- opt.fillchars = {
+--   vert = "┃",
+--   horiz = "━",
+--   horizup = "┻",
+--   horizdown = "┳",
+--   vertleft = "┫",
+--   vertright = "┣",
+--   verthoriz = "╋",
+-- }
 
 -- whitespace visualization
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
