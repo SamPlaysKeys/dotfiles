@@ -59,19 +59,51 @@ return {
       },
     }
 
+    -- Shortened mode names
+    local mode_map = {
+      ["NORMAL"] = "NOR",
+      ["INSERT"] = "INS",
+      ["VISUAL"] = "VIS",
+      ["V-LINE"] = "V-L",
+      ["V-BLOCK"] = "V-B",
+      ["SELECT"] = "SEL",
+      ["S-LINE"] = "S-L",
+      ["S-BLOCK"] = "S-B",
+      ["REPLACE"] = "REP",
+      ["V-REPLACE"] = "V-R",
+      ["COMMAND"] = "CMD",
+      ["EX"] = "EX",
+      ["MORE"] = "MOR",
+      ["CONFIRM"] = "CON",
+      ["SHELL"] = "SH",
+      ["TERMINAL"] = "TER",
+    }
+
     -- configure lualine with modified theme
     lualine.setup({
       options = {
         theme = my_lualine_theme,
-        section_separators = { left = "\u{e0b0}", right = "\u{e0b2}" },
-        component_separators = { left = "\u{e0b1}", right = "\u{e0b3}" },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        globalstatus = true,
       },
       sections = {
+        lualine_a = {
+          {
+            "mode",
+            fmt = function(str)
+              return mode_map[str] or str
+            end,
+          },
+        },
         lualine_b = {
           { "branch" },
         },
         lualine_c = {
-          { "filename", path = 1 },  -- 0=filename, 1=relative path, 2=absolute, 3=absolute with ~
+          {
+            "filename",
+            path = 4, -- 0=filename, 1=relative path, 2=absolute, 3=absolute with ~, 4=filename and parent dir
+          },
           { "diff" },
         },
         lualine_x = {
