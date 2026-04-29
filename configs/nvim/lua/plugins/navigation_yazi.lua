@@ -14,13 +14,13 @@ return {
       "<cmd>Yazi<cr>",
       desc = "Open yazi at the current file",
     },
+    -- {
+    --   "<leader>eY",
+    --   "<cmd>Yazi cwd<cr>",
+    --   desc = "Open yazi in nvim's working directory",
+    -- },
     {
-      "<leader>eY",
-      "<cmd>Yazi cwd<cr>",
-      desc = "Open yazi in nvim's working directory",
-    },
-    {
-      "<leader>iw",
+      "<leader>ew",
       "<cmd>Yazi toggle<cr>",
       desc = "Resume the last yazi session",
     },
