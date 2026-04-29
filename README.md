@@ -1,18 +1,22 @@
 # ✨ SetupFiles ✨
 
+> **⚠️ nvim-treesitter Breaking Change (April 2026)**
+> 
+> The nvim-treesitter plugin has moved to a new `main` branch with a completely rewritten, backwards-incompatible API. The old `require("nvim-treesitter.configs")` module no longer exists. If you're updating plugins after a long pause, be aware that treesitter configuration must be migrated. See [configs/nvim/README.md](configs/nvim/README.md#treesitter-migration-april-2026) for details.
+
 ## Overview
 
 This repository contains my personal development environment configuration files and setup scripts for **macOS**, **Debian**, and **RedHat**. The setup focuses on creating an efficient, modern development workflow centered around **Neovim**, **Yazi**, and **Zsh**.
 
-## Dotfiles Location
+## Configs Location
 
-All of the actual configuration files are cleanly organized inside the `dotfiles/` directory.
+All of the actual configuration files are cleanly organized inside the `configs/` directory.
 
-- **`dotfiles/zshrc`**: Zsh configuration.
-- **`dotfiles/gitconfig`**: Git configuration.
-- **`dotfiles/config/`**: App-specific configs meant to be symlinked to `~/.config/` (e.g., Neovim, Yazi).
+- **`configs/zshrc`**: Zsh configuration.
+- **`configs/gitconfig`**: Git configuration.
+- **`configs/nvim/`**, **`configs/yazi/`**, etc.: App-specific configs meant to be symlinked to `~/.config/`.
 
-> **Note:** For details on how the Neovim configuration is structured, see the [Neovim README](dotfiles/config/nvim/README.md).
+> **Note:** For details on how the Neovim configuration is structured, see the [Neovim README](configs/nvim/README.md).
 
 ## Requirements
 

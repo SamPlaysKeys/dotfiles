@@ -10,9 +10,4 @@
     install_full_applist: false
 
   roles:
-    - role: dependencies
-    - role: hackfont
-    - role: lazygit
-    - role: yazi
-    - role: neovim
     - role: symlinks
