@@ -85,7 +85,7 @@ return {
         theme = my_lualine_theme,
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
-        globalstatus = true,
+        globalstatus = false,
       },
       sections = {
         lualine_a = {
@@ -97,13 +97,12 @@ return {
           },
         },
         lualine_b = {
-          { "branch" },
-        },
-        lualine_c = {
           {
             "filename",
             path = 4, -- 0=filename, 1=relative path, 2=absolute, 3=absolute with ~, 4=filename and parent dir
           },
+        },
+        lualine_c = {
           { "diff" },
         },
         lualine_x = {
@@ -111,6 +110,7 @@ return {
           { "diagnostics" },
         },
         lualine_y = {},
+        lualine_z = { "branch" },
       },
     })
   end,
