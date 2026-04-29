@@ -29,35 +29,47 @@ return {
   -----------------------------------------------------------------------------
   -- NOTE: dropbar: VSCode-like file path and navigation
   -----------------------------------------------------------------------------
-{
-  'Bekaboo/dropbar.nvim',
-  -- optional, but required for fuzzy finder support
-  dependencies = {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    build = 'make'
-  },
-  opts = {},
-  config = function()
-    local dropbar_api = require('dropbar.api')
-    vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
-    vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
-    vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
-  end
-},
+  -- {
+  --   'Bekaboo/dropbar.nvim',
+  --   -- optional, but required for fuzzy finder support
+  --   dependencies = {
+  --     'nvim-telescope/telescope-fzf-native.nvim',
+  --     build = 'make'
+  --   },
+  --   opts = {},
+  --   config = function()
+  --     local dropbar_api = require('dropbar.api')
+  --     vim.keymap.set('n', '<Leader>;', dropbar_api.pick, { desc = 'Pick symbols in winbar' })
+  --     vim.keymap.set('n', '[;', dropbar_api.goto_context_start, { desc = 'Go to start of current context' })
+  --     vim.keymap.set('n', '];', dropbar_api.select_next_context, { desc = 'Select next context' })
+  --   end
+  -- },
 
   -----------------------------------------------------------------------------
-  -- NOTE: bufferline.nvim: Tab Bar
+  -- NOTE: tabby.nvim: Tabs instead of buffers
   -----------------------------------------------------------------------------
   {
-    "akinsho/bufferline.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    version = "*",
-    opts = {
-      options = {
-        mode = "tabs",
-        separator_style = "slant",
-      },
-    },
+    'nanozuki/tabby.nvim',
+    config = function()
+      require('tabby').setup({
+        preset = 'active_wins_at_tail',
+        option = {
+          -- theme = {
+          --   fill = 'TabLineFill',       -- tabline background
+          --   head = 'TabLine',           -- head element highlight
+          --   current_tab = 'TabLineSel', -- current tab label highlight
+          --   tab = 'TabLine',            -- other tab label highlight
+          --   win = 'TabLine',            -- window highlight
+          --   tail = 'TabLine',           -- tail element highlight
+          -- },
+          nerdfont = true,              -- whether use nerdfont
+          -- lualine_theme = nil,          -- lualine theme name
+          buf_name = {
+            mode = 'unique', -- or 'relative', 'tail', 'shorten'
+          },
+        },
+      })
+    end,
   },
 
   -----------------------------------------------------------------------------

@@ -35,6 +35,9 @@ keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) 
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
 keymap.set("n", "<leader>st", "<cmd>vsplit | term<CR><cmd>startinsert<CR>", { desc = "Split into Terminal" }) -- Split current window, opening terminal
+keymap.set("n", "<leader>s4", function()
+  vim.api.nvim_win_set_width(0, math.floor(vim.o.columns / 4))
+end, { desc = "Resize window to 1/4 screen width" })
 
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
