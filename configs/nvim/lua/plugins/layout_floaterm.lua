@@ -11,5 +11,7 @@ return {
     vim.g.floaterm_title = "Terminal"
     -- Close floaterm when the process exits
     vim.g.floaterm_autoclose = 1
+    -- Do not automatically switch to terminal mode
+    vim.g.floaterm_autoinsert = false
   end,
 }

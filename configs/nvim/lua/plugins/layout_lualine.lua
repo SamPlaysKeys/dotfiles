@@ -119,7 +119,7 @@ return {
         lualine_y = {},
         lualine_z = { "branch" },
       },
-      extensions = { "floaterm", "lazy" },
+      extensions = { "lazy" },
     })
   end,
 }
