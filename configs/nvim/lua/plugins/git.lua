@@ -80,6 +80,7 @@ return {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
     config = function()
+      vim.g.gitblame_enabled = 0 -- Disable git blame by default
       vim.api.nvim_create_user_command("Blame", "GitBlameToggle", { desc = "Toggle Git Blame" })
       vim.cmd([[cabbrev <expr> blame (getcmdtype() == ':' && getcmdline() ==# 'blame') ? 'Blame' : 'blame']])
     end,

@@ -17,6 +17,6 @@ return {
     })
 
     -- Keymaps for codediff
-    vim.keymap.set("v", "<leader>cd", "<cmd>CodeDiff<cr>", { desc = "Compare selected code blocks" })
+    vim.keymap.set({'n', 'v'}, "<leader>cd", "<cmd>CodeDiff<cr>", { desc = "Compare selected code blocks" })
   end,
 }
