@@ -8,6 +8,12 @@ return {
   },
   config = function()
     require("aerial").setup({
+      layout = {
+        default_direction = "right",
+        resize_to_content = true,
+        preserve_equality = false,
+        placement = "window",
+      },
       -- optionally use on_attach to set keymaps when aerial has attached to a buffer
       on_attach = function(bufnr)
         -- Jump forwards/backwards with '{' and '}'
