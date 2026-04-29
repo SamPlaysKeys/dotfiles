@@ -18,6 +18,8 @@ return {
       violet = "#FF61EF",
       yellow = "#FFDA7B",
       red = "#FF4A4A",
+      orange = "#FF9E64",
+      semilightgray = "#8b95a7",
       fg = "#c3ccdc",
       bg = "#112638",
       inactive_bg = "#2c3043",
@@ -49,6 +51,11 @@ return {
       },
       replace = {
         a = { bg = colors.red, fg = colors.bg, gui = "bold" },
+        b = { bg = branch_bg, fg = branch_fg },
+        c = { bg = colors.bg, fg = colors.fg },
+      },
+      terminal = {
+        a = { bg = colors.orange, fg = colors.bg, gui = "bold" },
         b = { bg = branch_bg, fg = branch_fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
@@ -85,7 +92,7 @@ return {
         theme = my_lualine_theme,
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
-        globalstatus = false,
+        globalstatus = true,
       },
       sections = {
         lualine_a = {
@@ -112,6 +119,7 @@ return {
         lualine_y = {},
         lualine_z = { "branch" },
       },
+      extensions = { "floaterm", "lazy" },
     })
   end,
 }
