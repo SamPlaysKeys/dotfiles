@@ -1,6 +1,7 @@
 return {
   {
     "samplayskeys/yank-filepath",
+    cmd = { "YankFilepath" },
     keys = {
       {
         "<leader>yp",
