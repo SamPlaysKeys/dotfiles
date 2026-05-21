@@ -20,6 +20,13 @@ return {
           size = 0.3,
         },
       },
+      todo_right = {
+        mode = "todo",
+        win = {
+          position = "right",
+          size = 0.25,
+        },
+      },
     },
   },
   cmd = "Trouble",
@@ -28,7 +35,7 @@ return {
     { "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Open trouble document diagnostics" },
     { "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", desc = "Open trouble quickfix list" },
     { "<leader>xl", "<cmd>Trouble loclist toggle<CR>", desc = "Open trouble location list" },
-    { "<leader>xt", "<cmd>Trouble todo toggle<CR>", desc = "Open todos in trouble" },
+    { "<leader>xt", "<cmd>Trouble todo_right toggle<CR>", desc = "Open todos in trouble" },
     { "<leader>xs", "<cmd>Trouble diagnostics_split toggle<CR>", desc = "Open trouble with split preview" },
   },
 }
