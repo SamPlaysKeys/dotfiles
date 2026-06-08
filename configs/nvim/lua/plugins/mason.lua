@@ -94,7 +94,7 @@ return {
             -- PowerShell
             vim.lsp.config('powershell_es', { capabilities = capabilities })
             vim.lsp.enable('powershell_es')
-            
+
             -- Jinja2
             vim.filetype.add({ extension = { jinja = "htmldjango", jinja2 = "htmldjango", j2 = "htmldjango" } })
             vim.lsp.config('jinja_lsp', {
