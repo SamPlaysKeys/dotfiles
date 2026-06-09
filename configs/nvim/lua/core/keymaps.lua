@@ -1,3 +1,11 @@
+function Map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, options)
+end
+
 -- set leader key to space
 vim.g.mapleader = " "
 
@@ -5,6 +13,9 @@ local keymap = vim.keymap -- for conciseness
 
 ---------------------
 -- General Keymaps -------------------
+
+
+
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
@@ -39,6 +50,21 @@ keymap.set("n", "<leader>s4", function()
   vim.api.nvim_win_set_width(0, math.floor(vim.o.columns / 4))
 end, { desc = "Resize window to 1/4 screen width" })
 
+-- window size adjustments
+-- normal mode
+Map("n", "<C-Up>", ":resize -2<CR>")
+Map("n", "<C-Down>", ":resize +2<CR>")
+Map("n", "<C-Left>", ":vertical resize -2<CR>")
+Map("n", "<C-Right>", ":vertical resize +2<CR>")
+
+-- terminal mode
+Map("t", "<C-Up>", "<cmd>resize -2<CR>")
+Map("t", "<C-Down>", "<cmd>resize +2<CR>")
+Map("t", "<C-Left>", "<cmd>vertical resize -2<CR>")
+Map("t", "<C-Right>", "<cmd>vertical resize +2<CR>")
+
+
+-- tab creation / behavior
 keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
 keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
@@ -52,3 +78,10 @@ keymap.set("t", '<C-Space>', "<C-\\><C-n>",{silent = true})
 
 -- undotree
 keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle UndoTree" })
+
+-- move selected text in visual mode
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- quit without saving
+Map("n", "lh", "<cmd>q!<CR>", { desc = "Quit without saving" })
