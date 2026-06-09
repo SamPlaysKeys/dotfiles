@@ -52,8 +52,8 @@ end, { desc = "Resize window to 1/4 screen width" })
 
 -- window size adjustments
 -- normal mode
-Map("n", "<C-Up>", ":resize -2<CR>")
-Map("n", "<C-Down>", ":resize +2<CR>")
+Map("n", "<C-Up>", ":resize +2<CR>")
+Map("n", "<C-Down>", ":resize -2<CR>")
 Map("n", "<C-Left>", ":vertical resize -2<CR>")
 Map("n", "<C-Right>", ":vertical resize +2<CR>")
 
@@ -84,4 +84,4 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- quit without saving
-Map("n", "lh", "<cmd>q!<CR>", { desc = "Quit without saving" })
+Map("n", "LH", "<cmd>q!<CR>", { desc = "Quit without saving" })
