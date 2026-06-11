@@ -1,3 +1,16 @@
+output "DP-2" {
+    position x=0 y=0
+    transform "90"
+}
+
+output "DP-1" {
+    position x=1080 y=0
+}
+
+output "eDP-1" {
+    position x=3640 y=480
+}
+
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "waybar"
 
