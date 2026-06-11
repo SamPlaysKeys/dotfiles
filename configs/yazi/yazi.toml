@@ -17,8 +17,6 @@ title_format   = "Yazi: {cwd}"
 spotters = [
 	{ url = "*/", run = "folder" },
 	# Code
-	{ mime = "text/*", run = "file-extra-metadata" },
-	{ mime = "application/{mbox,javascript,wine-extension-ini}", run = "file-extra-metadata" },
 	# Image
 	{ mime = "image/{avif,hei?,jxl}", run = "magick" },
 	{ mime = "image/svg+xml", run = "svg" },
@@ -30,7 +28,7 @@ spotters = [
 	# Error
 	{ mime = "null/*", run = "null" },
 	# Fallback
-	{ url = "*", run = "file-extra-metadata" },
+	{ url = "*", run = "file" },
 ]
 
 [[plugin.prepend_fetchers]]
